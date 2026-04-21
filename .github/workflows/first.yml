@@ -1,0 +1,22 @@
+on:
+  workflow_dispatch:
+  push:   
+jobs:
+  build:
+    name: First-Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run a one-line script
+        shell: bash
+        run: echo Hello, world!
+      - name: Run a multi-line script
+        shell: bash
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project. 
+      - name: Run existing script
+        shell: bash
+        run: |
+          chmod +x ./myscript.sh 
+          ./myscript.sh 
