@@ -22,3 +22,8 @@ runs:
       run: | 
         echo "${{ inputs.message }}" 
         echo "echoed_message=${{ inputs.message }}" >> $GITHUB_OUTPUT
+    
+    - name: echo output in the same action
+      shell: bash
+      run: |
+        echo "${{ steps.echostep.outputs.echoed_message }} - This is a computed message."  
