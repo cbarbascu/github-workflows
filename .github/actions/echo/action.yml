@@ -1,0 +1,24 @@
+name: Echo
+author: Constantin 
+description: A GitHub Action that echoes a message.
+inputs:
+  message:
+    description: 'The message to echo'
+    required: false
+    default: 'Hello, world!'
+outputs:
+  echoed_message:
+    description: 'The echoed message'
+    value: ${{ inputs.message }}
+  calculatesmessage:
+    description: 'The calculated message'
+    value: ${{ steps.echostep.outputs.echoed_message }}       
+runs:  
+  using: composite
+  steps:
+    - name: Echo the message
+      id: echostep
+      shell: bash
+      run: | 
+        echo "${{ inputs.message }}" 
+        echo "echoed_message=${{ inputs.message }}" >> $GITHUB_OUTPUT

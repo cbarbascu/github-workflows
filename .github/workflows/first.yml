@@ -20,3 +20,15 @@ jobs:
         run: |
           chmod +x ./myscript.sh 
           ./myscript.sh 
+          
+      - name: Use an action defined in this repository
+        uses: ./.github/actions/echo
+        id: echo_step
+        # uses: cbarbascu/github-workflows/.github/actions/echo
+        with:
+          message: 'Hello from the custom action!'
+      - name: Use the echoed message
+        shell: bash
+        run: | 
+          echo "The echoed message is: ${{ steps.echo_step.outputs.echoed_message }}"
+      
